@@ -1,0 +1,30 @@
+<div>
+	<h2>{{user.name}}</h2>
+	<img ng-src="{{user.avatar_url}}" title="{{user.name}}" width="80" height="80"/>
+	<br/>
+	Order:
+	<select ng-model="repoSortOrder">
+		<option value="+name">Name</option>
+		<option value="-stargazers_count">Stars</option>
+		<option value="+language">Language</option>
+	</select>
+</div>
+
+<table>
+	<thead>
+		<th>Name</th>
+		<th>Stars</th>
+		<th>Language</th>
+		<th>Clone URL</th>
+		<th>Description</th>
+	</thead>
+	<tbody>
+		<tr ng-repeat="repo in repos | orderBy:repoSortOrder">
+			<td>{{repo.name}}</td>
+			<td>{{repo.stargazers_count | number}}</td>
+			<td>{{repo.language}}</td>
+			<td><a href="{{repo.clone_url}}">{{repo.clone_url}}</a></td>
+			<td>{{repo.description}}</td>
+		</tr>
+	</tbody>
+</table>
